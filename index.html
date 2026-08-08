@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三顧茅廬 Three Visits — an animatic</title>
+<meta name="description" content="A procedurally rendered animatic of the three visits to the thatched cottage, from Romance of the Three Kingdoms. Every frame drawn in code; exports a real video file.">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span id="film-title-zh" class="zh"></span>
+    <span>
+      <strong id="film-title"></strong>
+      <em id="film-source"></em>
+    </span>
+  </div>
+  <div class="specs">
+    <span><b id="runtime"></b> runtime</span>
+    <span><b id="shot-count"></b> shots</span>
+    <span><b>1280×720</b> 30fps</span>
+  </div>
+</header>
+
+<main>
+  <section class="viewer">
+    <div class="stage-wrap">
+      <canvas id="stage" width="1280" height="720"></canvas>
+      <div class="rec-dot" aria-hidden="true"></div>
+    </div>
+
+    <div class="transport">
+      <button id="play" class="tbtn" aria-label="Play">▶</button>
+      <button id="restart" class="tbtn" aria-label="Restart" title="Restart">⟲</button>
+      <div id="progress" class="progress">
+        <input id="scrub" type="range" min="0" max="1000" value="0" step="1" aria-label="Scrub timeline">
+      </div>
+      <span id="clock" class="clock">00:00 / 00:00</span>
+      <button id="export" class="tbtn tbtn-primary">Export .webm</button>
+    </div>
+
+    <div class="meta">
+      <p id="slug" class="slug"></p>
+      <p id="action" class="action"></p>
+    </div>
+
+    <div class="options">
+      <label><input type="checkbox" id="slate"> Director's view <span class="dim">(burn shot data into frame)</span></label>
+      <label><input type="checkbox" id="sound" checked> Score</label>
+    </div>
+
+    <details class="cast">
+      <summary>人物图 · Cast portraits <span class="dim" id="cast-count"></span></summary>
+      <p class="dim tiny">
+        内置的是公有领域的明清人物画像（可公开发布）。你可以换成自己的图片——授权剧照、自己拍的、
+        任何来源都行。<b>换上的图只存在你本机，不会进仓库、不会上传。</b>
+        也可以直接把文件放进 <code>characters/</code> 目录，命名为 <code>cao-cao.jpg</code> 这样，刷新即可生效。
+      </p>
+      <p class="dim tiny">
+        Bundled portraits are public domain. Swap in your own — licensed stills, your own photography,
+        anything. Replacements stay in this browser; they are never uploaded or committed.
+      </p>
+      <ul id="cast-list" class="cast-list"></ul>
+
+      <div class="grab">
+        <label class="grab-open">
+          从视频抓帧 · Grab from video
+          <input type="file" id="grab-file" accept="video/*" hidden>
+        </label>
+        <span class="dim tiny">
+          有片源就不必找剧照：拖入视频文件，拉到你要的那一帧，直接截出人物图。
+          全分辨率，全程在本机，文件不会被读走也不会上传。
+        </span>
+      </div>
+    </details>
+
+    <dialog id="grabber" class="grabber">
+      <div class="grab-stage">
+        <video id="grab-video" playsinline></video>
+      </div>
+      <div class="grab-controls">
+        <button class="tbtn" id="grab-play">▶</button>
+        <input type="range" id="grab-scrub" min="0" max="1000" value="0" step="1" aria-label="Scrub video">
+        <span class="clock" id="grab-clock">00:00</span>
+      </div>
+      <div class="grab-controls">
+        <button class="tbtn" id="grab-back">−1 帧</button>
+        <button class="tbtn" id="grab-fwd">+1 帧</button>
+        <select id="grab-who" aria-label="Assign to character"></select>
+        <button class="tbtn tbtn-primary" id="grab-take">截取这一帧</button>
+        <button class="tbtn" id="grab-close">关闭</button>
+      </div>
+      <p class="dim tiny" id="grab-note">
+        截下的帧会立刻套用和内置画像相同的处理。想长期保留，点「下载这一帧」存进
+        <code>characters/</code> 目录。
+      </p>
+      <div class="grab-controls">
+        <button class="tbtn" id="grab-save">下载这一帧</button>
+        <span class="dim tiny" id="grab-status"></span>
+      </div>
+    </dialog>
+
+    <p id="status" class="status"></p>
+  </section>
+
+  <aside class="sidebar">
+    <h2>Shot list</h2>
+    <p class="dim tiny">Click any shot to jump to it. Space plays and pauses; arrows skip 5 seconds.</p>
+    <ol id="shotlist" class="shotlist"></ol>
+  </aside>
+</main>
+
+<footer>
+  <p>
+    Adapted from <b>Romance of the Three Kingdoms</b> (三國演義), attributed to Luo Guanzhong,
+    c. 14th century — public domain. Chapters 36–38.
+  </p>
+  <p class="dim">
+    This is an <b>animatic</b>: the timed storyboard a production cuts before it shoots. Every frame is
+    drawn procedurally in code — there is no photography, no footage and no generated imagery anywhere in it.
+  </p>
+</footer>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

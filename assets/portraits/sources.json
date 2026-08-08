@@ -1,0 +1,57 @@
+[
+  {
+    "key": "zhuge-liang",
+    "file": "zhuge-liang.jpg",
+    "title": "Zhuge Kongming Sancai Tuhui.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Zhuge_Kongming_Sancai_Tuhui.jpg",
+    "size": "574x900",
+    "license": "Public domain",
+    "artist": "Unknown author",
+    "date": "37th year of the Wanli reign (1609)",
+    "credit_page": "https://commons.wikimedia.org/wiki/File:Zhuge%20Kongming%20Sancai%20Tuhui.jpg"
+  },
+  {
+    "key": "guan-yu",
+    "file": "guan-yu.jpg",
+    "title": "Guan Yu Portrait.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/…",
+    "size": "433x591",
+    "license": "Public domain",
+    "artist": "Unknown author",
+    "date": "before 1912",
+    "credit_page": "https://commons.wikimedia.org/wiki/File:Guan%20Yu%20Portrait.jpg"
+  },
+  {
+    "key": "liu-bei",
+    "file": "liu-bei.jpg",
+    "title": "Liu Bei Portrait.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Liu_Bei_Portrait.jpg",
+    "size": "281x605",
+    "license": "Public domain",
+    "artist": "Unknown author",
+    "date": "Unknown",
+    "credit_page": "https://commons.wikimedia.org/wiki/File:Liu%20Bei%20Portrait.jpg"
+  },
+  {
+    "key": "zhang-fei",
+    "file": "zhang-fei.jpg",
+    "title": "ZhangFei.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/ZhangFei.jpg",
+    "size": "309x657",
+    "license": "Public domain",
+    "artist": "Unknown author",
+    "date": "Qing Dynasty",
+    "credit_page": "https://commons.wikimedia.org/wiki/File:ZhangFei.jpg"
+  },
+  {
+    "key": "sima-hui",
+    "file": "sima-hui.jpg",
+    "title": "Sima Hui Qing illustration.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Sima_Hui_Qing_illustration.jpg",
+    "size": "365x479",
+    "license": "Public domain",
+    "artist": "Unknown author",
+    "date": "Qing Dynasty (1906)",
+    "credit_page": "https://commons.wikimedia.org/wiki/File:Sima%20Hui%20Qing%20illustration.jpg"
+  }
+]
