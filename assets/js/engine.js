@@ -1,4 +1,4 @@
-import { SCENES } from './scenes.js';
+import { SCENES, VISIT_LABEL } from './scenes.js';
 import { TIMELINE, RUNTIME } from './film.js';
 import * as I from './ink.js';
 import * as P from './portraits.js';
@@ -103,6 +103,7 @@ export class Engine {
     ctx.fillRect(0, 0, W, H * BAR);
     ctx.fillRect(0, H * (1 - BAR), W, H * BAR);
 
+    this.visitCounter(shot, local);
     this.cutIn(shot, local);
     this.captions(shot, local);
     if (this.showSlate) this.slate(shot, local, time);
@@ -130,6 +131,35 @@ export class Engine {
    * own palette — a paper-white portrait dropped onto a night river would read
    * as a sticker.
    */
+  /**
+   * The visit counter, set like a seal in the top-right corner.
+   *
+   * Drawn here rather than in the scene because the scene runs inside the
+   * camera transform: on the establishing shots the camera pans, and a mark
+   * that pans with it slides straight out of frame. This is the device the
+   * whole film turns on — one, two, three — so it is pinned to the frame.
+   */
+  visitCounter(shot, t) {
+    const visit = shot.fx && shot.fx.visit;
+    if (!visit) return;
+    const { ctx, W, H } = this;
+    const pal = I.PALETTES[shot.palette] || I.PALETTES.night;
+    const a = I.clamp01((t - 0.7) / 1.1) * I.clamp01((shot.dur - t) / 0.6);
+    ctx.save();
+    ctx.globalAlpha = a * 0.9;
+    ctx.fillStyle = pal.text;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'alphabetic';
+    ctx.font = `40px ${CJK}`;
+    ctx.fillText(VISIT_LABEL[visit] || '', W * 0.93, H * 0.28);
+    ctx.globalAlpha = a * 0.5;
+    ctx.font = `14px ${LATIN}`;
+    ctx.letterSpacing = '3px';
+    ctx.fillText(`VISIT ${visit}`, W * 0.93, H * 0.325);
+    ctx.letterSpacing = '0px';
+    ctx.restore();
+  }
+
   cutIn(shot, local) {
     if (!shot.portrait || shot.scene === 'characterPlate') return;
     if (!P.has(shot.portrait)) return;

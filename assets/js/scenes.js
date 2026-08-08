@@ -143,7 +143,7 @@ const SEASON = {
   spring: { snow: 0, blossom: 0.15, leaf: 1, haze: 0.35 },
 };
 
-const VISIT_LABEL = { 1: '一顧', 2: '二顧', 3: '三顧' };
+export const VISIT_LABEL = { 1: '一顧', 2: '二顧', 3: '三顧' };
 
 /** Hills, haze and ground — the base for every exterior at Longzhong. */
 function valleyBase(ctx, W, H, pal, t, horizon, season, { seed = 12 } = {}) {
@@ -229,24 +229,6 @@ export function cottageGate(ctx, W, H, pal, t, p, shot) {
   }
 
   if (season.snow) I.snowfall(ctx, { w: W, h: H, t, alpha: 0.85, seed: 7, density: 240, wind: 0.7 });
-
-  // The visit counter, set like a seal.
-  if (fx.visit) {
-    const a = I.clamp01((t - 0.7) / 1.1) * I.clamp01((shot.dur - t) / 0.6);
-    ctx.save();
-    ctx.globalAlpha = a * 0.9;
-    ctx.fillStyle = pal.text;
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'alphabetic';
-    ctx.font = `40px ${CJK}`;
-    ctx.fillText(VISIT_LABEL[fx.visit] || '', W * 0.93, H * 0.28);
-    ctx.globalAlpha = a * 0.5;
-    ctx.font = `14px ${LATIN}`;
-    ctx.letterSpacing = '3px';
-    ctx.fillText(`VISIT ${fx.visit}`, W * 0.93, H * 0.325);
-    ctx.letterSpacing = '0px';
-    ctx.restore();
-  }
 
   I.vignette(ctx, W, H, 0.36);
   I.grain(ctx, W, H, 0.05);
