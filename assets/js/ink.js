@@ -926,7 +926,7 @@ export function empireMap(ctx, x, y, s, { alpha = 1, reveal = 0, color = 'rgba(3
   // The three shares, filling in one at a time as he explains them.
   const shares = [
     { p: [[-176, -128], [176, -128], [176, -52], [-176, -60]], c: 'rgba(90,96,104,0.30)', label: '魏', lx: 30, ly: -92 },
-    { p: [[-176, 30], [176, 22], [176, 128], [-176, 128]], c: 'rgba(80,110,96,0.30)', label: '吳', lx: 92, ly: 84 },
+    { p: [[-176, 30], [176, 22], [176, 128], [-176, 128]], c: 'rgba(80,110,96,0.30)', label: '吳', lx: 132, ly: 58 },
     { p: [[-176, -56], [10, -48], [30, 28], [-176, 34]], c: 'rgba(150,90,60,0.34)', label: '蜀', lx: -110, ly: -8 },
   ];
   shares.forEach((sh, i) => {
